@@ -41,7 +41,7 @@ Primeri:
 def izpisi_velikost(velikost, _ostanek = 0, _prefix_i = 0):
     prefix = ["B", "KB", "MB", "GB", "TB", "PB", "EB"]
 
-    if velikost >= 10000 and _prefix_i < len(prefix):
+    if velikost >= 10000 and _prefix_i < len(prefix) - 1:
         return izpisi_velikost(velikost / 1024, ostanekPlus(velikost % 1024), _prefix_i + 1)
     return str(int(velikost) + _ostanek) + " " + prefix[_prefix_i]
 
