@@ -45,6 +45,7 @@ def izpisi_velikost(velikost): # Definiramo glavni podprogram, ki bo pravilno iz
     # V podprogramu imamo vsepovsod v if stavkih "< 1", saj
     # je v nalogi navedeno če je rezultat več kot 4 številčni,
     # se naj izpiše v preponi ki sledi trenutni.
+    #########################################################
 
     if velikost < 10000:
         return str(velikost) + " B"
