@@ -38,47 +38,14 @@ Primeri:
 # Naslednja rešitev je narejena z uporabo podprogramom.
 #######################################################
 
-def izpisi_velikost(velikost): # Definiramo glavni podprogram, ki bo pravilno izpisal velikost.
-    ostanek = 0 # Definiramo ostanek ki nam bo pomagal pri popolnem izpisu velikosti ki se usklaja z nalogo.
+def izpisi_velikost(velikost, _ostanek = 0, _prefix_i = 0):
+    prefix = ["B", "KB", "MB", "GB", "TB", "PB", "EB"]
 
-    #########################################################
-    # V podprogramu imamo vsepovsod v if stavkih "< 1", saj
-    # je v nalogi navedeno če je rezultat več kot 4 številčni,
-    # se naj izpiše v preponi ki sledi trenutni.
-    #########################################################
+    if velikost >= 10000 and _prefix_i < len(prefix) - 1:
+        return izpisi_velikost(velikost / 1024, ostanekPlus(velikost % 1024), _prefix_i + 1)
+    return str(int(velikost) + _ostanek) + " " + prefix[_prefix_i]
 
-    if velikost < 10000:
-        return str(velikost) + " B"
-    else:
-        ostanek = velikost % 1024
-        velikost /= 1024
 
-        if velikost < 10000:
-            return str(round(velikost) + ostanek) + " KB"
-        else:
-            ostanek = ostanekPlus(velikost % 1024)
-            velikost /= 1024
-            if velikost < 10000:
-                return str(round(velikost) + ostanek) + " MB"
-            else:
-                ostanek = ostanekPlus(velikost % 1024)
-                velikost /= 1024
-                if velikost < 10000:
-                    return str(round(velikost) + ostanek) + " GB"
-                else:
-                    ostanek = ostanekPlus(velikost % 1024)
-                    velikost /= 1024
-                    if velikost < 10000:
-                        return str(round(velikost) + ostanek) + " TB"
-                    else:
-                        ostanek = ostanekPlus(velikost % 1024)
-                        velikost /= 1024
-                        if velikost < 10000:
-                            return str(round(velikost) + ostanek) + " PB"
-                        else:
-                            return str(round(velikost) + ostanek) + " EB"
-
-    
 
 # Uporaba naslednjega podprograma je da se odločimo če bomo pripisali rezultatu 1 ali ne.
 # V navodilih naloge je napisano naslednje:
