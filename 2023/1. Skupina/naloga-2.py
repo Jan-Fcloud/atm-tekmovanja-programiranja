@@ -41,23 +41,31 @@ Primeri:
 def izpisi_velikost(velikost): # Definiramo glavni podprogram, ki bo pravilno izpisal velikost.
     ostanek = 0 # Definiramo ostanek ki nam bo pomagal pri popolnem izpisu velikosti ki se usklaja z nalogo.
 
-    #########################################################
-    # V podprogramu imamo vsepovsod v if stavkih "< 1", saj
+    ############################################################
+    # V podprogramu imamo vsepovsod v if stavkih "< 10000", saj
     # je v nalogi navedeno če je rezultat več kot 4 številčni,
-    # se naj izpiše v preponi ki sledi trenutni.
-    #########################################################
+    # se naj izpiše v predponi ki sledi trenutni.
+    # Primer:
+    # - 9999B -> 9999 B
+    # - 10000B -> 794 KB
+    ############################################################
 
     if velikost < 10000:
-        return str(velikost) + " B"
+        return str(velikost) + " B" # vsak return uporablja funkcijo str(), da pretvori dobljeno stevilo v string ki ga lahko potem združimo z predpono, ter you izpišemo.
     else:
-        ostanek = velikost % 1024
-        velikost /= 1024
+        ostanek = ostanekPlus(velikost % 1024) # ostanek nam bo v nalogi pomagal zaokrozevat število navzgor, če je ostanek večji od 0.
+        velikost /= 1024 # delimo velikost z 1024, da dobimo pravilno vrednost v naslednji predponi, ter ponavbljamo za vsak visji nivo.
 
-        if velikost < 10000:
-            return str(round(velikost) + ostanek) + " KB"
+        if velikost < 10000: # vedno preverjamo ce je stevilo 4 številsko. V primeru da ni, gremo na naslednji nivo.
+            return str(round(velikost)) + " KB" # round() funkcija število zaokroži v celo število, nato mu še dodamo ostanek, ki nam pove če je potrebno zaokrožit število navzgor.
         else:
-            ostanek = ostanekPlus(velikost % 1024)
+            ostanek = ostanekPlus(velikost % 1024) # klicemo funkcijo ki nam vrne 1 ali 0, odvisno od tega če je ostanek večji od 0.
             velikost /= 1024
+
+            ##################################################################
+            # Vsi zgornji komentarji se nato ponavljajo za vsak nivo predpone.
+            ##################################################################
+
             if velikost < 10000:
                 return str(round(velikost) + ostanek) + " MB"
             else:
