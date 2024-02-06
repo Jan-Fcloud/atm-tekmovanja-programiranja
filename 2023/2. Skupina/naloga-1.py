@@ -95,7 +95,7 @@ def main():
 
     print(stoli) # izpis končnega sedežnega reda
 
-    koncni_izpis(stoli, vhod_osebe) # kličemo podprogram za podroben izpis kako se je stopnjevalo
+    koncni_izpis(stoli, vhod_osebe) # kličemo podprogram za podroben izpis kako se je stopnjevalo.
 
 
 def koncni_izpis(stoli, vhod_osebe):
